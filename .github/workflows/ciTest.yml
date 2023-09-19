@@ -25,7 +25,9 @@ jobs:
         run: docker compose up -d
 
       - name: Test with Gradle
-        run: chmod +x ./gradlew
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build
         if: always()
 
       - name: Publish Test Report

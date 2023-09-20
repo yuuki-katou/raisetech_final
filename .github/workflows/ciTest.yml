@@ -58,7 +58,7 @@ jobs:
           # Options are `alpine`, `linux`, `macos`, `windows`
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
-          ./codecov -t ${39f8149f-5767-4eb5-9120-5c2544c1db1c}
+          ./codecov -t ${CODECOV_TOKEN=39f8149f-5767-4eb5-9120-5c2544c1db1c}
 
 
       - name: Run SpotBugs

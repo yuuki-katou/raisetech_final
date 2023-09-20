@@ -58,16 +58,19 @@ jobs:
           # Options are `alpine`, `linux`, `macos`, `windows`
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
-          ./codecov -t ${CODECOV_TOKEN=39f8149f-5767-4eb5-9120-5c2544c1db1c} -f coverage.xml
+          ./codecov -t ${CODECOV_TOKEN=39f8149f-5767-4eb5-9120-5c2544c1db1c}
+          with:
+            files: ./path/report1.xml,./another/path/report2.xml
+
 
 
       - name: Run SpotBugs
-        run: ./gradlew spotbugsMain
-        if: always()
+          run: ./gradlew spotbugsMain
+          if: always()
 
-      - name: Upload SpotBugs Report
-        uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: spotbugs-result
-          path: build/reports/spotbugs/main.html
+          - name: Upload SpotBugs Report
+            uses: actions/upload-artifact@v1
+            if: always()
+            with:
+              name: spotbugs-result
+              path: build/reports/spotbugs/main.html

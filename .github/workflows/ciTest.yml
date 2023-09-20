@@ -34,6 +34,7 @@ jobs:
         uses: mikepenz/action-junit-report@v3
         if: always()
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           report_paths: '**/build/test-results/test/TEST-*.xml'
           job_name: 'Test Report'
 
@@ -72,6 +73,6 @@ jobs:
           paths: |
             ${{ github.workspace }}/**/build/reports/jacoco/prodNormalDebugCoverage/prodNormalDebugCoverage.xml,
             ${{ github.workspace }}/**/build/reports/jacoco/**/debugCoverage.xml
-          token: ${{ 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 }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 40
           min-coverage-changed-files: 60

@@ -53,15 +53,12 @@ jobs:
           workdir: 'src/main'
 
       - name: Upload coverage reports to Codecov
-        run: |
-          # Replace `linux` below with the appropriate OS
-          # Options are `alpine`, `linux`, `macos`, `windows`
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov -t ${CODECOV_TOKEN=39f8149f-5767-4eb5-9120-5c2544c1db1c}
-          with:
-            files: ./path/report1.xml,./another/path/report2.xml
-          
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage1.xml,./coverage2.xml
+
       - name: Run SpotBugs
         run: ./gradlew spotbugsMain
         if: always()

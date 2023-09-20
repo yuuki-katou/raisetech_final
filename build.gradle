@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.3'
     id 'io.spring.dependency-management' version '1.1.3'
+    id 'com.github.spotbugs' version '5.0.14'
 }
 
 group = 'com.yuuki'
@@ -21,7 +22,7 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:3.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.1.3'
     implementation 'com.github.database-rider:rider-spring:1.41.0'
-    implementation 'com.github.spotbugs:spotbugs:4.7.3'
+    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.6.0'
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
@@ -29,4 +30,17 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+spotbugs {
+    spotbugsMain.enabled = true
+    spotbugsTest.enabled = false
+    ignoreFailures = true
+}
+
+spotbugsMain {
+    reports {
+        html {
+            enabled = true
+        }
+    }
 }

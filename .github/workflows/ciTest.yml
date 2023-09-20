@@ -56,8 +56,7 @@ jobs:
         uses: codecov/codecov-action@v3
         if: always()
         with:
-          token: ${{ secrets.CODECOV_TO }}
-          files: ./coverage1.xml,./coverage2.xml
+          token: ${{ CODECOV_TOKEN=39f8149f-5767-4eb5-9120-5c2544c1db1c }}
 
       - name: Run SpotBugs
         run: ./gradlew spotbugsMain

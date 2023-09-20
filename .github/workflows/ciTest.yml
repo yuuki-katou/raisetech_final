@@ -6,6 +6,9 @@ on:
       - '**' # すべてのブランチでトリガーされるように設定
   pull_request:
 
+permissions:
+  checks: write
+
 jobs:
   build:
     runs-on: ubuntu-latest

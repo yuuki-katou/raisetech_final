@@ -56,7 +56,7 @@ jobs:
         uses: codecov/codecov-action@v3
         if: always()
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TO }}
           files: ./coverage1.xml,./coverage2.xml
 
       - name: Run SpotBugs

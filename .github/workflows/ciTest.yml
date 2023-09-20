@@ -56,7 +56,7 @@ jobs:
         uses: codecov/codecov-action@v3
         if: always()
         with:
-          token: ${{ CODECOV_TOKEN=39f8149f-5767-4eb5-9120-5c2544c1db1c }}
+          token: ${{ CODECOV_TOKEN }}
 
       - name: Run SpotBugs
         run: ./gradlew spotbugsMain

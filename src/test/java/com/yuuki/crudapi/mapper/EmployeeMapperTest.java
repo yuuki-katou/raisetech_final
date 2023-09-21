@@ -30,13 +30,15 @@ public class EmployeeMapperTest {
     void すべてのユーザーが取得できること() {
         List<Employee> employeeList = employeeMapper.findAll();
         assertThat(employeeList)
-                .hasSize(2)
+                .hasSize(3)
                 .usingRecursiveFieldByFieldElementComparator()
                 .contains(
                         new Employee(1, "Taro Yamada", LocalDate.of(1990, 1, 1),
                                 "Sales", "Manager", "taro.yamada@example.com", "012-3456-7890"),
                         new Employee(2, "Hanako Tanaka", LocalDate.of(1995, 2, 2),
-                                "Sales", "Staff", "hanako.tanaka@example.com", "023-4567-8901")
+                                "Sales", "Staff", "hanako.tanaka@example.com", "023-4567-8901"),
+                        new Employee(3, "Yuki Nakamura", LocalDate.of(1992, 4, 4),
+                                "HR", "Specialist", "yuki.nakamura@example.com", "023-4567-8903")
                 );
 
     }
@@ -46,17 +48,22 @@ public class EmployeeMapperTest {
     @Transactional
     void 部署名で該当する従業員の情報を取得できること() {
         List<Employee> result = employeeMapper.findByDepartment("Sales");
-
-        assertThat(result).hasSize(2);
-        assertThat(result.get(0).getName()).isEqualTo("Taro Yamada");
-        assertThat(result.get(1).getName()).isEqualTo("Hanako Tanaka");
+        assertThat(result)
+                .hasSize(2)
+                .usingRecursiveFieldByFieldElementComparator()
+                .contains(
+                        new Employee(1, "Taro Yamada", LocalDate.of(1990, 1, 1),
+                                "Sales", "Manager", "taro.yamada@example.com", "012-3456-7890"),
+                        new Employee(2, "Hanako Tanaka", LocalDate.of(1995, 2, 2),
+                                "Sales", "Staff", "hanako.tanaka@example.com", "023-4567-8901")
+                );
     }
 
     @Test
     @DataSet(value = "datasets/Employees.yml")
     @Transactional
     void 部署名で該当する従業員の情報がないとき空のリストが返される() {
-        List<Employee> result = employeeMapper.findByDepartment("HR");
+        List<Employee> result = employeeMapper.findByDepartment("Research & Development");
         assertThat(result).hasSize(0);
         assertThat(result).isEmpty();
     }
@@ -90,7 +97,7 @@ public class EmployeeMapperTest {
     @ExpectedDataSet(value = "datasets/EmployeesAfterInsert.yml", ignoreCols = "id")
     @Transactional
     void 新しい従業員情報が登録されること() {
-        Employee employee = new Employee(3, "Ichiro Sato", LocalDate.of(1990, 3, 3),
+        Employee employee = new Employee(4, "Ichiro Sato", LocalDate.of(1990, 3, 3),
                 "Information Systems", "System Engineer", "ichiro.sato@example.com", "012-3456-7890");
         employeeMapper.create(employee);
     }

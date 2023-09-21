@@ -6,4 +6,10 @@ employees:
     role: "Manager"
     email: "taro.yamada@example.com"
     phone: "012-3456-7890"
-
+  - id: 3
+    name: "Yuki Nakamura"
+    birthdate: "1992-04-04"
+    department: "HR"
+    role: "Specialist"
+    email: "yuki.nakamura@example.com"
+    phone: "023-4567-8903"

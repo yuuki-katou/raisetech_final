@@ -51,6 +51,13 @@ public class EmployeeRestApiIntegrationTest {
                            "role": "Staff",
                            "email": "hanako.tanaka@example.com",
                            "phone": "023-4567-8901"
+                       },
+                       {
+                         "name": "Yuki Nakamura",
+                         "department": "HR",
+                         "role": "Specialist",
+                         "email": "yuki.nakamura@example.com",
+                         "phone": "023-4567-8903"
                        }
                    ]
                    
@@ -103,7 +110,7 @@ public class EmployeeRestApiIntegrationTest {
     @DataSet(value = "datasets/Employees.yml")
     @Transactional
     void 存在しない部署名を指定した場合にステータスコードが404を返すこと() throws Exception {
-        String departmentName = "HR";
+        String departmentName = "Research & Development";
         mockMvc.perform(MockMvcRequestBuilders.get("/employees")
                         .param("department", departmentName))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -117,7 +124,7 @@ public class EmployeeRestApiIntegrationTest {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/employees")
                         .contentType(MediaType.APPLICATION_JSON).content("""
                                 {
-                                   "id": 3,
+                                   "id": 4,
                                    "name": "Ichiro Sato",
                                    "birthdate": "1990-03-03",
                                    "department": "Information Systems",

@@ -14,6 +14,13 @@ employees:
     email: "hanako.tanaka@example.com"
     phone: "023-4567-8901"
   - id: 3
+    name: "Yuki Nakamura"
+    birthdate: "1992-04-04"
+    department: "HR"
+    role: "Specialist"
+    email: "yuki.nakamura@example.com"
+    phone: "023-4567-8903"
+  - id: 4
     name: "Ichiro Sato"
     birthdate: "1990-03-03"
     department: "Information Systems"

@@ -13,3 +13,10 @@ employees:
     role: "System Engineer"
     email: "hanako.tanaka@example.com"
     phone: "023-4567-8901"
+  - id: 3
+    name: "Yuki Nakamura"
+    birthdate: "1992-04-04"
+    department: "HR"
+    role: "Specialist"
+    email: "yuki.nakamura@example.com"
+    phone: "023-4567-8903"
